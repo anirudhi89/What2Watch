@@ -6,13 +6,18 @@ function apiCall() {
     var randomMovie = movies[randNumber].title;
     console.log(randomMovie)
     $.getJSON('http://www.omdbapi.com/?t=' + encodeURI(randomMovie) + "&type=movie" + "&apikey="+ encodeURI(apikey)).then(function(response) {
+    var defaultimg = 'assets/No-Photo-Available.jpg'
     var image = response.Poster;
+    console.log(response)
     var url = "https://www.imdb.com/title/" + response.imdbID;
-        if (image !== 'N/A') {
-            $('img').attr('src', image);
-            $('a').attr('href', url)
-        }
-        document.getElementById('movieName').innerText = randomMovie;
+    if ((image == 'N/A') || response.Error) {
+        $('img').attr('src', defaultimg);
+    }
+    else {
+        $('img').attr('src', image);
+        $('a').attr('href', url)
+    }
+    document.getElementById('movieName').innerText = randomMovie;
     })
 }
 document.getElementById('clicked').addEventListener("click", apiCall)
