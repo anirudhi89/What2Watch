@@ -5,7 +5,7 @@ function apiCall() {
     var randNumber = Math.floor((Math.random() * movies.length))
     var randomMovie = movies[randNumber].title;
     console.log(randomMovie)
-    $.getJSON('http://www.omdbapi.com/?t=' + encodeURI(randomMovie) + "&type=movie" + "&apikey="+ encodeURI(apikey)).then(function(response) {
+    $.getJSON('https://www.omdbapi.com/?t=' + encodeURI(randomMovie) + "&type=movie" + "&apikey="+ encodeURI(apikey)).then(function(response) {
     var defaultimg = 'assets/No-Photo-Available.jpg'
     var image = response.Poster;
     console.log(response)
